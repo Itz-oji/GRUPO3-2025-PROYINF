@@ -4,7 +4,8 @@
 * Diego Espinoza Jara 202273576-7 <br>
 * Benjamin Barria Pinuer 202273644-5 <br>
 * Natalie Delgado Mora 202273501-5 <br>
-* Ignacio Serrano 202273577-5 <br>
+* Ignacio Serrano Alfaro 202273577-5 <br>
+<br>
 
 * Profesor: Ricardo Salas <br>
 * Ayudante: Alex Urrutia <br>
