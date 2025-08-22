@@ -9,5 +9,9 @@
 
 * Profesor: Ricardo Salas <br>
 * Ayudante: Alex Urrutia <br>
-## Informacion <br>
-Este proyecto consiste en la realizacion de una plataforma web que brinda ayuda para la realizacion de ensayos PAES para estudiastes de 1° a 4° Medio de intituciones abscritas al plan de **_NOMBRE DE LA INSTITUCION, NO ME ACUERDO_**. El proyecto se basa en 3 principios, la realizacion de ensayos por parte de los estudiantes, la revision y monitoreo de estos mismos por parte de los profesores y el monitoreo por parte de **_NOMBRE DE LA INSTITUCION, NO ME ACUERDO_** sobre el progreso de las instituciones. Si se quiere probar el proyecto porfavor revisar **_"README-analisis_y_diseño_software.md"_**. Este proyecto continuara siendo trabajado durante este segundo semestre de 2025.
+
+## Identificación del Proyecto Base (2025-1) <br>
+
+El proyecto consiste en una plataforma de ensayos PAES diseñada para apoyar a estudiantes y profesores en la preparación de esta prueba a través de ensayos personalizados. Actualmente, los estudiantes pueden registrarse e iniciar sesión con su correo institucional, rendir ensayos cronometrados y recibir retroalimentación básica, mientras que los profesores tienen la posibilidad de acceder a la plataforma, crear preguntas y gestionar ensayos de manera sencilla.
+
+Se encuentran en desarrollo funcionalidades más avanzadas que buscan ampliar la disponibilidad y la calidad de los ensayos, ofrecer retroalimentación automática rápida a los estudiantes y entregar herramientas más eficientes para que los docentes generen y administren evaluaciones. Todo esto se hace con el objetivo de que los resultados sean medibles y alcanzables, estableciendo criterios claros de éxito para evaluar el impacto de la plataform
