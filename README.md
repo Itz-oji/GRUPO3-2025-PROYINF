@@ -5,6 +5,7 @@
 * Benjamin Barria Pinuer 202273644-5 <br>
 * Natalie Delgado Mora 202273501-5 <br>
 * Ignacio Serrano 202273577-5 <br>
+
 * Profesor: Ricardo Salas <br>
 * Ayudante: Alex Urrutia <br>
 ## Informacion <br>
