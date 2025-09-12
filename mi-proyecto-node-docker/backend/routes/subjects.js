@@ -15,9 +15,13 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Crear una nueva materia (crear tabla con nombre dado)
-router.post('/', async (req, res) => {
+router.post('/admin', async (req, res) => {
   const { name } = req.body;
+
+  if (!req.user || !ADMIN_EMAILS.includes(req.user.emails[0].value)) {
+    return res.status(403).json({ error: 'No autorizado' });
+  }
+
   try {
     await db.query(`
       CREATE TABLE IF NOT EXISTS "${name}" (
@@ -33,5 +37,21 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+router.delete('/admin/:subject', async (req, res) => {
+  const { subject } = req.params;
+
+  if (!req.user || !ADMIN_EMAILS.includes(req.user.emails[0].value)) {
+    return res.status(403).json({ error: 'No autorizado' });
+  }
+
+  try {
+    await db.query(`DROP TABLE IF EXISTS "${subject}"`);
+    res.json({ message: 'Materia eliminada con éxito' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 module.exports = router;

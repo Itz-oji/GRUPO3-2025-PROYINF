@@ -11,6 +11,18 @@ const port = 3000;
 
 const ALLOWED_EMAILS = ["benjaminbarria06@gmail.com"];
 
+const ADMIN_EMAILS = ["benjaminbarria06@gmail.com"];
+
+(async () => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    console.log('✅ Conexión exitosa a la base de datos:', result.rows[0].now);
+  } catch (err) {
+    console.error('❌ Error al conectar con la base de datos:', err);
+    process.exit(1); // detiene la app si no puede conectarse
+  }
+})();
+
 // --- Middlewares ---
 
 // Para que Express entienda los cuerpos JSON en peticiones POST/PUT
@@ -85,10 +97,12 @@ app.get('/save', async (req, res) => {
 
 app.get('/api/user', (req, res) => {
   if (req.isAuthenticated()) {
+    const email = req.user.emails[0].value;
     res.json({
       id: req.user.id,
       name: req.user.displayName,
-      email: req.user.emails[0].value
+      email,
+      isAdmin: ADMIN_EMAILS.includes(email)
     });
   } else {
     res.status(401).json({ message: 'No autenticado' });
