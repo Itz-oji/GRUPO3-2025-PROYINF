@@ -49,10 +49,10 @@ export default function HomePage() {
         {user?.role === 'profesor' ? (
           <>
             <button onClick={() => navigate('/crear-pregunta')}>Crear Pregunta</button>
-            <button onClick={() => navigate('/profesor')}>Crear Ensayo</button>
+            <button onClick={() => navigate('/crear-ensayo')}>Crear Ensayo</button>
           </>
         ) : (
-          <button onClick={() => navigate('/estudiante')}>Realizar Ensayo</button>
+          <button onClick={() => navigate('/Examenes')}>Realizar Ensayo</button>
         )}
       </div>
     </div>

@@ -77,10 +77,12 @@ app.get('/auth/google/callback',
 // --- Rutas importadas ---
 const subjectRoutes = require('./routes/subjects');
 const questionRoutes = require('./routes/questions');
+const examRoutes = require('./routes/exams');
 
 // Importante: después de middleware, montar las rutas
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/questions', questionRoutes);
+app.use('/api/exams', examRoutes);
 
 // --- Rutas adicionales para pruebas y ejemplo ---
 
