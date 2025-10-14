@@ -52,7 +52,10 @@ export default function HomePage() {
             <button onClick={() => navigate('/crear-ensayo')}>Crear Ensayo</button>
           </>
         ) : (
-          <button onClick={() => navigate('/Examenes')}>Realizar Ensayo</button>
+          <>
+            <button onClick={() => navigate('/Examenes')}>Realizar Ensayo</button>
+            <button onClick={() => navigate('/Preguntas-liberadas')}>Preguntas liberadas</button>
+          </>
         )}
       </div>
     </div>

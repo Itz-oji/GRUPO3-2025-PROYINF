@@ -5,6 +5,7 @@ import { useAuth } from './context/auth';
 
 import HomePage from "./components/HomePage";
 import SubjectSelector from "./components/SubjectSelector";
+import FreeQuestions from "./components/FreeQuestions";
 import QuestionBuilder from "./components/CreateQuess";
 import ExamBuilder from "./components/CreateExam";
 import ExamPage from "./components/ExamPage";
@@ -29,6 +30,7 @@ function App() {
       <Route path="/login" element={user ? <Navigate to="/" /> : <LoginPage />} />
       <Route path="/" element={user ? <HomePage /> : <Navigate to="/login" />} />
       <Route path="/Examenes" element={user ? <SubjectSelector /> : <Navigate to="/login" />} />
+      <Route path="/Preguntas-liberadas" element={user ? <FreeQuestions /> : <Navigate to="/login" />} />
       <Route path="/crear-pregunta" element={user ? <QuestionBuilder /> : <Navigate to="/login" />} />
       <Route path="/crear-ensayo" element={user ? <ExamBuilder /> : <Navigate to="/login" />} />
       <Route path="/exam/:examId" element={user ? <ExamPage /> : <Navigate to="/login" />} />

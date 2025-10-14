@@ -22,9 +22,7 @@ export default function CreateExam() {
   const fetchQuestions = async (subject) => {
     setLoading(true);
     try {
-      // Ahora todas las preguntas están en una tabla y filtramos por subject
       const res = await axios.get(`/api/questions/${subject}`);
-      // Parseamos options si no lo hizo el backend
       const parsedQuestions = res.data.map(q => ({
         ...q,
         options: Array.isArray(q.options) ? q.options : JSON.parse(q.options)
@@ -44,6 +42,26 @@ export default function CreateExam() {
         ? prev.filter(id => id !== qId)
         : [...prev, qId]
     );
+  };
+
+  // ✅ Nueva función: cambiar el estado de "liberada"
+  const toggleLiberada = async (qId, currentState) => {
+    try {
+      // Hacemos PATCH al backend para invertir el estado
+      const res = await axios.patch(`/api/questions/${qId}/liberar`, {
+        liberada: !currentState
+      });
+
+      // Actualizamos la lista localmente sin volver a cargar todo
+      setQuestions(prev =>
+        prev.map(q =>
+          q.id === qId ? { ...q, liberada: res.data.liberada } : q
+        )
+      );
+    } catch (err) {
+      console.error('Error cambiando estado de liberada:', err);
+      alert('No se pudo actualizar la pregunta');
+    }
   };
 
   const handleCreateExam = async () => {
@@ -89,7 +107,6 @@ export default function CreateExam() {
         ))}
       </div>
 
-      {/* Lista de preguntas */}
       {selectedSubject && (
         <div>
           <h2 className="text-xl font-bold mb-4">
@@ -105,21 +122,32 @@ export default function CreateExam() {
               {questions.map((q) => (
                 <li
                   key={q.id}
-                  className="border p-3 rounded shadow cursor-pointer hover:bg-gray-50"
+                  className="border p-3 rounded shadow hover:bg-gray-50 transition"
                 >
                   <div className="flex items-center justify-between">
                     <div
                       onClick={() =>
-                        setExpandedQuestion(
-                          expandedQuestion === q.id ? null : q.id
-                        )
+                        setExpandedQuestion(expandedQuestion === q.id ? null : q.id)
                       }
-                      className="flex-1"
+                      className="flex-1 cursor-pointer"
                     >
                       <p className="font-bold">{q.name}</p>
                       <p className="text-sm text-gray-500">
                         Materia: {q.subject} | Dificultad: {q.difficulty}
                       </p>
+                      <p className="text-sm">
+                        Estado:{" "}
+                        <span
+                          className={
+                            q.liberada
+                              ? "text-green-600 font-semibold"
+                              : "text-red-600 font-semibold"
+                          }
+                        >
+                          {q.liberada ? "Liberada" : "No liberada"}
+                        </span>
+                      </p>
+
                       {expandedQuestion === q.id && (
                         <div className="mt-2">
                           <p className="text-gray-700">{q.statement}</p>
@@ -127,7 +155,11 @@ export default function CreateExam() {
                             {q.options.map((opt, idx) => (
                               <li
                                 key={idx}
-                                className={opt.isCorrect ? 'text-green-600 font-semibold' : ''}
+                                className={
+                                  opt.isCorrect
+                                    ? "text-green-600 font-semibold"
+                                    : ""
+                                }
                               >
                                 {opt.text}
                               </li>
@@ -137,20 +169,30 @@ export default function CreateExam() {
                       )}
                     </div>
 
-                    {/* Checkbox para seleccionar pregunta */}
-                    <input
-                      type="checkbox"
-                      checked={selectedQuestions.includes(q.id)}
-                      onChange={() => toggleQuestionSelection(q.id)}
-                      className="ml-4"
-                    />
+                    {/* Checkbox y botón liberar/bajar */}
+                    <div className="flex flex-col items-center ml-4 gap-2">
+                      <input
+                        type="checkbox"
+                        checked={selectedQuestions.includes(q.id)}
+                        onChange={() => toggleQuestionSelection(q.id)}
+                      />
+                      <button
+                        onClick={() => toggleLiberada(q.id, q.liberada)}
+                        className={`px-3 py-1 text-sm rounded shadow ${
+                          q.liberada
+                            ? "bg-red-500 hover:bg-red-600 text-white"
+                            : "bg-green-500 hover:bg-green-600 text-white"
+                        }`}
+                      >
+                        {q.liberada ? "Bajar pregunta" : "Liberar pregunta"}
+                      </button>
+                    </div>
                   </div>
                 </li>
               ))}
             </ul>
           )}
 
-          {/* Botón para crear examen */}
           {selectedQuestions.length > 0 && (
             <div className="mt-6">
               <button
@@ -162,7 +204,6 @@ export default function CreateExam() {
             </div>
           )}
 
-          {/* Modal de creación de examen */}
           {showModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
               <div className="bg-white p-6 rounded shadow max-w-md w-full">
@@ -198,7 +239,6 @@ export default function CreateExam() {
               </div>
             </div>
           )}
-
         </div>
       )}
     </div>
