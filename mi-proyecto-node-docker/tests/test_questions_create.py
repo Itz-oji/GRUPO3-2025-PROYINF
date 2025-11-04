@@ -15,7 +15,8 @@ class TestQuestionsPOST(unittest.TestCase):
             "name": f"[TEST] seed {rands()}",
             "difficulty": "easy",
             "statement": "1+1?",
-            "options": {"A":"1","B":"2","answer":"B"}
+            "options": {"A":"1","B":"2"},
+            "answer": "B"
         }
         try:
             requests.post(f"{QUESTIONS_URL}/{cls.subject}", json=payload, timeout=10)
@@ -35,7 +36,8 @@ class TestQuestionsPOST(unittest.TestCase):
             "name": f"[TEST] Pregunta {rands()}",
             "difficulty": "easy",
             "statement": "2+3?",
-            "options": {"A":"4","B":"5","C":"6","answer":"B"}
+            "options": {"A":"4","B":"5","C":"6"},
+            "answer": "B"
         }
         r = requests.post(f"{QUESTIONS_URL}/{self.subject}", json=payload, timeout=10)
         self.assertEqual(r.status_code, 200, r.text)
@@ -51,7 +53,7 @@ class TestQuestionsPOST(unittest.TestCase):
             "options": {"A":"x","B":"y"}  # sin 'answer'
         }
         r = requests.post(f"{QUESTIONS_URL}/{self.subject}", json=payload, timeout=10)
-        self.assertEqual(r.status_code, 422, f"Se esperaba 422, llegó {r.status_code}: {r.text}")
+        self.assertEqual(r.status_code, 400, f"Se esperaba 400, llegó {r.status_code}: {r.text}")
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
