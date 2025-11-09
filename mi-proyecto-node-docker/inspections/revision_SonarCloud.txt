@@ -39,6 +39,6 @@ Se considera recoregir el codigo modificando el metodo .includes() por .has(), e
 ---
 
 ## Conclusión y acciones de mejora
+Finalmente ambas recomendaciones ehcas por SonarCloud se implementaran debido a que son  utilies para nuestro proyecto y no muy complejas de modificar.
 - Las recomendaciones **críticas (Seguridad)** se abordarán de inmediato.  
-- Las recomendaciones **menores (Mantenibilidad)** se aplicarán progresivamente durante el refactoring del código.  
-- La herramienta SonarCloud se utilizará nuevamente antes del siguiente hito del proyecto para validar las mejoras implementadas.
+- Las recomendaciones **menores (Mantenibilidad)** se aplicarán durante el mantenimiento del código.  
