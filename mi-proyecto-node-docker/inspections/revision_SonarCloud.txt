@@ -9,14 +9,17 @@ Inspección de Código con SonarCloud
 -----------------------------------------------------------------
 
 -> Issue 1: SQL Riesgo de inserción (Seguridad)
-  Severidad:** Blocker (Crítica)  
-**Archivo/Línea:** L26  
+  └─Severidad: Blocker (Crítica)  
+  └─Archivo/Línea: L26  
+
 **Descripción:**  
-El código construye una consulta SQL directamente con datos controlados por el usuario, lo que lo hace vulnerable a ataques de inyección SQL.  
+El código construye una consulta SQL directamente con datos controlados por el usuario, lo que lo hace vulnerable a ataques de inyección SQL. Por ejemplo dejando la libertad de hacer "name": "users; DROP TABLE subjects; --"
+
 **Recomendación:**  
-Usar consultas parametrizadas (prepared statements) para separar la lógica de datos y el código SQL.  
+Se recomienda cambiar la forma en que se interactua con SQL haciendo que se revise los parametros de la consulta SQL para asi separar la logica de datos y el codigo SQL.
+
 **Acción:**  
-Se considera **corregir inmediatamente** en la próxima actualización del backend.
+Se modificara la consulta SQL revisando antes si el parametro {name} contiene solo caracteres, numeros o guiones bajo, esto se realizara para la proxima actualizacon del backend.
 
 ---
 
