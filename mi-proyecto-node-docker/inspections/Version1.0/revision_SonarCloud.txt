@@ -25,7 +25,7 @@ Se modificara la consulta SQL revisando antes si el parametro {name} contiene so
 
 -> Issue 2: Ineficiencia en la verificación de existencia (Mantenibilidad)
   └─Severidad: Minor (media)
-  └─Archivo/Línea: backend/index.js L87  
+  └─Archivo/Línea: backend/index.js L12
 
 **Descripción:**  
 SonarCloud detectó que la constante ALLOWED_EMAILS se define como un arreglo (Array) que se utiliza únicamente para verificar si un correo existe o no dentro de la lista. Esto es ineficiente, ya que el método .includes() recorre todo el arreglo en cada verificación (complejidad O(n))
