@@ -1,15 +1,15 @@
-# Inspección de Código con SonarCloud
+Inspección de Código con SonarCloud
 
-## Proyecto:
+- Proyecto:
 **GRUPO3-2025-PROYINF**
 
-## Fecha:
+- Fecha:
 **09/11/2025**
 
----
+-----------------------------------------------------------------
 
-## Issue 1: SQL Injection Risk (Seguridad)
-**Severidad:** Blocker (Crítica)  
+-> Issue 1: SQL Riesgo de inserción (Seguridad)
+  Severidad:** Blocker (Crítica)  
 **Archivo/Línea:** L26  
 **Descripción:**  
 El código construye una consulta SQL directamente con datos controlados por el usuario, lo que lo hace vulnerable a ataques de inyección SQL.  
