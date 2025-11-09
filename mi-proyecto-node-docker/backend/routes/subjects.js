@@ -22,8 +22,12 @@ router.post('/admin', async (req, res) => {
     return res.status(403).json({ error: 'No autorizado' });
   }
 
+  if (!/^[a-zA-Z0-9_]+$/.test(name)) {
+    return res.status(400).json({ error: 'Nombre de tabla inválido' });
+  }
+
   try {
-    await db.query(`
+    const query = `
       CREATE TABLE IF NOT EXISTS "${name}" (
         id SERIAL PRIMARY KEY,
         name TEXT,
@@ -31,7 +35,9 @@ router.post('/admin', async (req, res) => {
         statement TEXT,
         options JSONB
       )
-    `);
+    `;
+    await db.query(query);
+    
     res.json({ message: 'Tabla creada con éxito' });
   } catch (err) {
     res.status(500).json({ error: err.message });

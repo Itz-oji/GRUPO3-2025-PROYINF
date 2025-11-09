@@ -9,7 +9,7 @@ require('dotenv').config();
 const app = express();
 const port = 3000;
 
-const ALLOWED_EMAILS = ["benjaminbarria06@gmail.com"];
+const ALLOWED_EMAILS = new Set(["benjaminbarria06@gmail.com"]);
 
 const ADMIN_EMAILS = ["benjaminbarria06@gmail.com"];
 
@@ -53,7 +53,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/callback"
   }, (accessToken, refreshToken, profile, done) => {
     const email = profile.emails[0].value;
-    if (!ALLOWED_EMAILS.includes(email)) {
+    if (!ALLOWED_EMAILS.has(email)) {
       return done(null, false, { message: "Correo no autorizado" });
     }
     return done(null, profile);
