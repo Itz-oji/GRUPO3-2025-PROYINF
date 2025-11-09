@@ -10,7 +10,7 @@ Inspección de Código con SonarCloud
 
 -> Issue 1: SQL Riesgo de inserción (Seguridad)
   └─Severidad: Blocker (Crítica)  
-  └─Archivo/Línea: L26  
+  └─Archivo/Línea: backend/routes/subject.js L26  
 
 **Descripción:**  
 El código construye una consulta SQL directamente con datos controlados por el usuario, lo que lo hace vulnerable a ataques de inyección SQL. Por ejemplo dejando la libertad de hacer "name": "users; DROP TABLE subjects; --"
@@ -21,17 +21,20 @@ Se recomienda cambiar la forma en que se interactua con SQL haciendo que se revi
 **Acción:**  
 Se modificara la consulta SQL revisando antes si el parametro {name} contiene solo caracteres, numeros o guiones bajo, esto se realizara para la proxima actualizacon del backend.
 
----
+--------------------------------------------------------------------
 
-## Issue 2: Variable declarada y no utilizada (Mantenibilidad)
-**Severidad:** Minor  
-**Archivo/Línea:** L87  
+-> Issue 2: Ineficiencia en la verificación de existencia (Mantenibilidad)
+  └─Severidad: Minor (media)
+  └─Archivo/Línea: backend/index.js L87  
+
 **Descripción:**  
-SonarCloud detectó una variable definida pero nunca utilizada dentro de una función del componente `ExamPage.jsx`.  
+SonarCloud detectó que la constante ALLOWED_EMAILS se define como un arreglo (Array) que se utiliza únicamente para verificar si un correo existe o no dentro de la lista. Esto es ineficiente, ya que el método .includes() recorre todo el arreglo en cada verificación (complejidad O(n))
+
 **Recomendación:**  
-Eliminar variables innecesarias para mejorar la legibilidad del código.  
+Usar un objeto Set, que está optimizado para búsquedas rápidas con el método .has(), el cual tiene complejidad O(1). Esto mejora el rendimiento del código.
+
 **Acción:**  
-Se considera **corregir** en la próxima limpieza de código, ya que no afecta la funcionalidad.
+Se considera recoregir el codigo modificando el metodo .includes() por .has(), esto ya que no afecta la funcionalidad del codigo.
 
 ---
 
