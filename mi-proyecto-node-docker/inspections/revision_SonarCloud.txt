@@ -1,0 +1,38 @@
+# Inspección de Código con SonarCloud
+
+## Proyecto:
+**GRUPO3-2025-PROYINF**
+
+## Fecha:
+**09/11/2025**
+
+---
+
+## Issue 1: SQL Injection Risk (Seguridad)
+**Severidad:** Blocker (Crítica)  
+**Archivo/Línea:** L26  
+**Descripción:**  
+El código construye una consulta SQL directamente con datos controlados por el usuario, lo que lo hace vulnerable a ataques de inyección SQL.  
+**Recomendación:**  
+Usar consultas parametrizadas (prepared statements) para separar la lógica de datos y el código SQL.  
+**Acción:**  
+Se considera **corregir inmediatamente** en la próxima actualización del backend.
+
+---
+
+## Issue 2: Variable declarada y no utilizada (Mantenibilidad)
+**Severidad:** Minor  
+**Archivo/Línea:** L87  
+**Descripción:**  
+SonarCloud detectó una variable definida pero nunca utilizada dentro de una función del componente `ExamPage.jsx`.  
+**Recomendación:**  
+Eliminar variables innecesarias para mejorar la legibilidad del código.  
+**Acción:**  
+Se considera **corregir** en la próxima limpieza de código, ya que no afecta la funcionalidad.
+
+---
+
+## Conclusión y acciones de mejora
+- Las recomendaciones **críticas (Seguridad)** se abordarán de inmediato.  
+- Las recomendaciones **menores (Mantenibilidad)** se aplicarán progresivamente durante el refactoring del código.  
+- La herramienta SonarCloud se utilizará nuevamente antes del siguiente hito del proyecto para validar las mejoras implementadas.
