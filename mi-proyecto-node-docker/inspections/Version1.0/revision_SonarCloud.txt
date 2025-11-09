@@ -6,6 +6,14 @@ Inspección de Código con SonarCloud
 - Fecha:
 **09/11/2025**
 
+Resumen de Resultados
+
+- Quality Gate: Not Computed
+- Resultado general: Cumple con las reglas de calidad (“Sonar way”)
+- Análisis ejecutado: 12:56
+- Branch analizado: main
+- Total líneas de código: 1.8K
+
 -----------------------------------------------------------------
 
 -> Issue 1: SQL Riesgo de inserción (Seguridad)

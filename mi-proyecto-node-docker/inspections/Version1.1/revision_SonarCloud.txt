@@ -1,0 +1,30 @@
+Inspección de Código con SonarCloud
+
+- Proyecto:
+**GRUPO3-2025-PROYINF**
+
+- Fecha:
+**09/11/2025**
+
+Resumen de Resultados
+
+- Quality Gate: Passed
+- Resultado general: Cumple con las reglas de calidad (“Sonar way”)
+- Análisis ejecutado: 17:34
+- Branch analizado: main
+- Total líneas de código: 1.8K
+
+-----------------------------------------------------------------
+Cambios realisados
+
+*Issue corregido 1: Vulnerabilidad SQL (Security - Blocker)
+    -Antes: Construcción de consultas SQL con datos del usuario directamente.
+    -Ahora: Se validan los parámetros mediante una expresión regular antes de ejecutar la consulta SQL.
+    -Archivo afectado: backend/routes/subjects.js
+    -Resultado: SonarCloud no detecta vulnerabilidades activas.
+
+*Issue corregido 2: Uso ineficiente de Arrays para verificación (Maintainability - Medium)
+    -Antes: Se usaba un array ALLOWED_EMAILS para verificar correos con .includes().
+    -Ahora: Se cambió por un Set y se utiliza .has() para mejorar la eficiencia.
+    -Archivo afectado: backend/index.js
+    -Resultado: Se eliminó el code smell; mejora la mantenibilidad y eficiencia
