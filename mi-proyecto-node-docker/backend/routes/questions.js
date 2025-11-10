@@ -18,6 +18,7 @@ router.post('/:subject', async (req, res) => {
   if (!options.hasOwnProperty(answer)) {
     return res.status(400).json({ error: `La clave answer "${answer}" no existe en options` });
   }
+  
 
   try {
     // Verificar si la columna 'answer' existe, y crearla si no
